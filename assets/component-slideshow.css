@@ -105,10 +105,24 @@ slideshow-component .slideshow.banner {
 /* Bottom bar content layout */
 .is-bottom-bar.banner__content .slideshow__text.banner__box .banner__heading {
   margin: 0;
+  line-height: 1.1;
+}
+.is-bottom-bar.banner__content
+  .slideshow__text.banner__box
+  .banner__heading
+  .alt-font {
+  font-family: "Cormorant Garamond", serif;
 }
 .is-bottom-bar.banner__content .slideshow__text.banner__box .banner__text {
   margin: 0;
   opacity: 0.9;
+}
+.is-bottom-bar.banner__content
+  .slideshow__text.banner__box
+  .banner__text
+  .alt-font {
+  font-family: "Work Sans", system-ui, -apple-system, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
 }
 .is-bottom-bar.banner__content .slideshow__text.banner__box .banner__buttons {
   margin: 0;
@@ -291,7 +305,7 @@ slideshow-component .slideshow.banner {
   left: 50%;
   bottom: 10rem; /* lift more above bar */
   transform: translateX(-50%);
-  z-index: 50;
+  z-index: 2;
   background: none;
   border: none;
   padding: 0;
@@ -372,7 +386,7 @@ slideshow-component .slideshow.banner {
 @media screen and (max-width: 749px) {
   .slideshow__controls--floating {
     bottom: 12rem;
-    z-index: 50;
+    z-index: 2;
   }
 }
 
@@ -398,13 +412,13 @@ slideshow-component .slideshow.banner {
 /* Force floating controls to overlay above bar and default control rules */
 .slideshow__controls.slideshow__controls--floating {
   position: absolute !important;
-  z-index: 20;
+  z-index: 2;
 }
 
 @media screen and (max-width: 749px) {
   .slideshow__controls.slideshow__controls--floating {
     position: absolute !important;
-    z-index: 20;
+    z-index: 2;
   }
 }
 
