@@ -160,7 +160,7 @@
           {% if has_custom_offset %}style="--offset-x: {{ block.settings.offset_x_percent }}%; --offset-y: {{ block.settings.offset_y_percent }}%;"{% endif %}>
           <div class="slideshow__text banner__box content-container content-container--full-width-mobile color-{{ block.settings.color_scheme }} gradient slideshow__text--{{ block.settings.text_alignment }} slideshow__text-mobile--{{ block.settings.text_alignment_mobile }}{% if block.settings.minimal_chip %} variant--chip{% endif %} variant--bar">
             {%- if block.settings.heading != blank -%}
-              <h2 class="banner__heading inline-richtext {{ block.settings.heading_size }}">
+              <h2 class="banner__heading inline-richtext h1">
                 {{ block.settings.heading }}
               </h2>
             {%- endif -%}

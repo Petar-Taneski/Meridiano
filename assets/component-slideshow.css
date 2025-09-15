@@ -105,6 +105,7 @@ slideshow-component .slideshow.banner {
 /* Bottom bar content layout */
 .is-bottom-bar.banner__content .slideshow__text.banner__box .banner__heading {
   margin: 0;
+  line-height: 1.1;
 }
 .is-bottom-bar.banner__content
   .slideshow__text.banner__box
