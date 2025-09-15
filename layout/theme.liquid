@@ -255,6 +255,19 @@
       }
     {% endstyle %}
 
+    <!-- Meridiano: Custom font override (Fraunces + Plus Jakarta Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500&display=swap" rel="stylesheet">
+    {% style %}
+      :root {
+        --font-heading-family: 'Fraunces', serif;
+        --font-heading-weight: 500;
+        --font-body-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        --font-body-weight: 400;
+      }
+    {% endstyle %}
+
     {{ 'base.css' | asset_url | stylesheet_tag }}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 

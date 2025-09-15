@@ -106,9 +106,22 @@ slideshow-component .slideshow.banner {
 .is-bottom-bar.banner__content .slideshow__text.banner__box .banner__heading {
   margin: 0;
 }
+.is-bottom-bar.banner__content
+  .slideshow__text.banner__box
+  .banner__heading
+  .alt-font {
+  font-family: "Cormorant Garamond", serif;
+}
 .is-bottom-bar.banner__content .slideshow__text.banner__box .banner__text {
   margin: 0;
   opacity: 0.9;
+}
+.is-bottom-bar.banner__content
+  .slideshow__text.banner__box
+  .banner__text
+  .alt-font {
+  font-family: "Work Sans", system-ui, -apple-system, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
 }
 .is-bottom-bar.banner__content .slideshow__text.banner__box .banner__buttons {
   margin: 0;
