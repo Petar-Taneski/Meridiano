@@ -56,12 +56,20 @@ Implementation anchors (as of now)
 - Global font tokens: `assets/base.css` (CSS variables for headings/body)
 - Hero overlay/bar + controls: `assets/component-slideshow.css`
 - Carousel heading consistency: `sections/slideshow.liquid` (force H1)
+- Header compact + glass options: `sections/header.liquid` + `assets/base.css`
+- Header link behavior: text-only hover/active scale + glow; no underlines
+- Menu simplification: "Watch parts" shows first 5 items + "View all"
+- Hover-open behaviors (desktop): header menus and localization dropdowns
+- Dropdown styling (glass): `assets/base.css`, `assets/component-localization-form.css`
+- Search overlay and predictive results: glass treatment in `assets/component-search.css` + `assets/component-predictive-search.css`; images match glass
 
 Open questions to refine later
 
 - Heading weight mapping per level (e.g., H1 600, H2–H5 500).
 - Adaptive glass density/tint for very bright hero images.
 - CTA emphasis on glass (solid vs outline vs glass pill) per context.
+- Localization dropdown item set (flags vs text-only) and densities.
+- Predictive search content layout at narrow widths (image size, grid gaps).
 
 How to use this file
 

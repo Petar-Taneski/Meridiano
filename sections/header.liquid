@@ -79,7 +79,7 @@
 
 {%- style -%}
   .header {
-    padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem;
+    padding: {% if section.settings.compact_header %}10{% else %}{{ section.settings.padding_top | times: 0.5 | round: 0 }}{% endif %}px 3rem {% if section.settings.compact_header %}10{% else %}{{ section.settings.padding_bottom | times: 0.5 | round: 0 }}{% endif %}px 3rem;
   }
 
   .section-header {
@@ -95,8 +95,8 @@
 
   @media screen and (min-width: 990px) {
     .header {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-top: {% if section.settings.compact_header %}14{% else %}{{ section.settings.padding_top }}{% endif %}px;
+      padding-bottom: {% if section.settings.compact_header %}14{% else %}{{ section.settings.padding_bottom }}{% endif %}px;
     }
   }
 {%- endstyle -%}
@@ -123,7 +123,7 @@
   {% if header_tag == 'sticky-header' %}
     data-sticky-type="{{ section.settings.sticky_header_type }}"
   {% endif %}
-  class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}"
+  class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}{% if section.settings.glass_header %} header-wrapper--glass{% endif %}"
 >
   {%- liquid
     assign social_links = false
@@ -190,6 +190,8 @@
         endif
       endif
     %}
+
+    
 
     {%- if section.settings.logo_position == 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
@@ -305,6 +307,71 @@
     </div>
   </header>
 </{{ header_tag }}>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const desktopMQ = window.matchMedia('(min-width: 990px)');
+
+    function setupHoverMenus() {
+      const detailsMenus = document.querySelectorAll('.header__inline-menu header-menu > details, .header__inline-menu .mega-menu');
+      detailsMenus.forEach((detailsEl) => {
+        const summaryEl = detailsEl.querySelector('summary');
+        const onEnter = () => { if (desktopMQ.matches) detailsEl.setAttribute('open', ''); };
+        const onLeave = () => { if (desktopMQ.matches) detailsEl.removeAttribute('open'); };
+        detailsEl.addEventListener('mouseenter', onEnter);
+        detailsEl.addEventListener('mouseleave', onLeave);
+        if (summaryEl) {
+          summaryEl.addEventListener('click', (e) => {
+            if (desktopMQ.matches) {
+              e.preventDefault();
+            }
+          });
+        }
+      });
+    }
+
+    setupHoverMenus();
+    desktopMQ.addEventListener('change', setupHoverMenus);
+
+    // Hover-to-open for header localization (country/currency) dropdowns
+    function setupHoverLocalization() {
+      const disclosures = document.querySelectorAll('.header-localization .disclosure');
+      disclosures.forEach((wrapper) => {
+        const button = wrapper.querySelector('.disclosure__button');
+        const list = wrapper.querySelector('.disclosure__list-wrapper');
+        if (!button || !list) return;
+
+        const open = () => {
+          if (!desktopMQ.matches) return;
+          button.setAttribute('aria-expanded', 'true');
+          list.removeAttribute('hidden');
+          list.style.opacity = '1';
+          list.style.pointerEvents = 'auto';
+        };
+
+        const close = () => {
+          if (!desktopMQ.matches) return;
+          button.setAttribute('aria-expanded', 'false');
+          list.setAttribute('hidden', '');
+          list.style.opacity = '';
+          list.style.pointerEvents = '';
+        };
+
+        wrapper.addEventListener('mouseenter', open);
+        wrapper.addEventListener('mouseleave', close);
+
+        button.addEventListener('click', (e) => {
+          if (desktopMQ.matches) {
+            e.preventDefault();
+          }
+        });
+      });
+    }
+
+    setupHoverLocalization();
+    desktopMQ.addEventListener('change', setupHoverLocalization);
+  });
+</script>
 
 {%- if settings.cart_type == 'notification' -%}
   {%- render 'cart-notification',
@@ -569,6 +636,40 @@
       "id": "show_line_separator",
       "default": true,
       "label": "t:sections.header.settings.show_line_separator.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "compact_header",
+      "default": true,
+      "label": "Compact header (reduced height)"
+    },
+    {
+      "type": "checkbox",
+      "id": "glass_header",
+      "default": true,
+      "label": "Glass header (frosted)"
+    },
+    {
+      "type": "header",
+      "content": "Watches button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_watches_button",
+      "default": true,
+      "label": "Show Watches button"
+    },
+    {
+      "type": "text",
+      "id": "watches_link_label",
+      "default": "Watches",
+      "label": "Watches button label"
+    },
+    {
+      "type": "text",
+      "id": "watches_link_url",
+      "label": "Watches button URL",
+      "default": "/collections/watches"
     },
     {
       "type": "header",
